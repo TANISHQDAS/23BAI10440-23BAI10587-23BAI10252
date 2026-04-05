@@ -4,13 +4,14 @@ This project implements a Deep Q-Network (DQN) using PyTorch to train an agent t
 
 The goal of the agent is to control a spacecraft and land it safely between two landing flags. The agent learns optimal behavior by interacting with the environment and improving its policy using reinforcement learning.
 
-Features
+The implementation includes the following components:
+
 Deep Q-Network with multiple fully connected layers
-Experience Replay Buffer
-Target Network for stable learning
-Epsilon-greedy exploration strategy
+Experience Replay Buffer for storing past experiences
+Target Network for stable Q-value estimation
+Epsilon-greedy exploration strategy for balancing exploration and exploitation
 Training visualization using Matplotlib
-Model saving and evaluation
+Model saving and evaluation pipeline
 Algorithm Overview
 
 Deep Q-Learning is a reinforcement learning algorithm where a neural network approximates the Q-function. The Q-function estimates the expected cumulative reward for taking a specific action in a given state.
@@ -19,16 +20,16 @@ The agent follows these steps during training:
 
 Observe the current state from the environment
 Select an action using an epsilon-greedy policy
-Receive a reward and next state from the environment
+Receive a reward and the next state from the environment
 Store the transition in the replay buffer
 Sample mini-batches from memory to train the neural network
 
-To stabilize training, a target network is periodically updated from the main policy network.
+To stabilize training, a target network is periodically updated from the main policy network. This prevents unstable Q-value updates and improves convergence during learning.
 
 Project Structure
 File	Description
 dqn_lunarlander.py	Main training and evaluation script
-lunar_dqn_model.pth	Saved trained model
+lunar_dqn_model.pth	Saved trained model weights
 README.md	Project documentation
 Requirements
 
@@ -38,22 +39,24 @@ pip install gymnasium
 pip install torch
 pip install numpy
 pip install matplotlib
+
 How to Run
 
 Clone the repository:
 
 git clone https://github.com/yourusername/lunar-lander-dqn
+
 cd lunar-lander-dqn
 
 Run the training script:
 
 python dqn_lunarlander.py
 
-If a trained model already exists (lunar_dqn_model.pth), the script will load it instead of retraining.
+If a trained model already exists (lunar_dqn_model.pth), the script will automatically load it instead of retraining.
 
 Training
 
-During training the agent:
+During training the agent performs the following steps:
 
 Collects experience from the environment
 Stores experiences in a replay buffer
@@ -69,6 +72,9 @@ The program also generates plots showing:
 
 Reward per Episode
 Loss per Episode
+
+These visualizations help analyze how the agent improves over time.
+
 Evaluation
 
 After training, the agent is evaluated across several episodes to measure its performance.
@@ -78,10 +84,12 @@ Example output:
 Eval episode reward: 230.5
 Eval episode reward: 215.8
 Average reward: 224.3
+
+This evaluation stage helps determine whether the trained model has learned a stable landing policy.
+
 Demo
 
-The trained agent can be visualized in the environment using render mode.
-This demonstrates how the learned policy controls the spacecraft to land successfully.
+The trained agent can be visualized in the environment using render mode. This demonstration shows how the learned policy controls the spacecraft to land successfully within the landing zone.
 
 ## Files and usage
 
