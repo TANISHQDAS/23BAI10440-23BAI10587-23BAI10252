@@ -1,8 +1,10 @@
-Deep Q-Network for Lunar Lander 🚀
+🚀 Deep Q-Network for Lunar Lander
 
 This project implements a Deep Q-Network (DQN) using PyTorch to train an agent to solve the LunarLander-v3 environment from Gymnasium.
 
-The goal of the agent is to control a spacecraft and land it safely between two flags using reinforcement learning. The agent learns optimal actions through interaction with the environment and by improving its policy using the Deep Q-Learning algorithm.
+The goal of the agent is to control a spacecraft and land it safely between two flags using reinforcement learning. The agent learns optimal actions through interaction with the environment and improves its policy using the Deep Q-Learning algorithm.
+
+📌 Features
 
 The implementation includes:
 
@@ -12,27 +14,26 @@ Target Network for stable learning
 Epsilon-greedy exploration strategy
 Training visualization using Matplotlib
 Model saving and evaluation
-Algorithm Overview
+🧠 Algorithm Overview
 
 Deep Q-Learning is a reinforcement learning method where a neural network approximates the Q-function. The Q-function estimates the expected cumulative reward for taking an action in a given state.
 
-The agent:
-
-Observes the current environment state
-Chooses an action using an epsilon-greedy policy
-Receives a reward and next state
-Stores the transition in a replay buffer
-Samples mini-batches from memory to train the neural network
+Agent Workflow
+Observe the current environment state
+Choose an action using an epsilon-greedy policy
+Receive a reward and next state
+Store the transition in a replay buffer
+Sample mini-batches from memory to train the neural network
 
 To stabilize training, a target network is periodically updated from the main policy network.
 
-Project Structure
+📁 Project Structure
 project/
 │
 ├── dqn_lunarlander.py     # Main training and evaluation script
 ├── lunar_dqn_model.pth    # Saved trained model
 ├── README.md              # Project documentation
-Requirements
+⚙️ Requirements
 
 Install the required Python libraries before running the code.
 
@@ -40,20 +41,16 @@ pip install gymnasium
 pip install torch
 pip install numpy
 pip install matplotlib
-How to Run
-
-Clone the repository:
-
+▶️ How to Run
+1. Clone the repository
 git clone https://github.com/yourusername/lunar-lander-dqn
 cd lunar-lander-dqn
-
-Run the training script:
-
+2. Run the training script
 python dqn_lunarlander.py
 
 If a trained model file already exists, the script will load it automatically instead of retraining.
 
-Training
+🏋️ Training
 
 During training the agent:
 
@@ -62,52 +59,107 @@ Stores experiences in a replay buffer
 Updates the neural network using mini-batches
 Periodically updates the target network
 Gradually decreases exploration (epsilon decay)
+Example Training Output
+Episode: 10  Reward: 120.5  Loss: 0.0231  Epsilon: 0.87
+Training Visualizations
 
-Training progress prints:
-
-Episode: 10 Reward: 120.5 Loss: 0.0231 Epsilon: 0.87
-
-The script also generates plots showing:
+The script generates plots showing:
 
 Reward per Episode
 Loss per Episode
-Evaluation
+📊 Evaluation
 
 After training, the agent is evaluated over multiple episodes to measure performance.
 
-Example output:
-
+Example Output
 Eval episode reward: 230.5
 Eval episode reward: 215.8
 Average reward: 224.3
-Demo
+🎮 Demo
 
-The trained agent can be visualized interacting with the environment using the human render mode.
+The trained agent can be visualized interacting with the environment using human render mode.
 
-This shows how the learned policy controls the spacecraft to land successfully.
+This demonstrates how the learned policy controls the spacecraft to land successfully.
 
-Method Reference
+🔬 Method Reference
 
-We use the lunar lander implementation from gymnasium. For the implementation of the actor-critic algorithm we loosely follow Ref. [1]. While for the implementation of deep Q-learning we follow Ref. [2], for the implementation of double deep Q-learning we follow Ref. [3].
+We use the Lunar Lander implementation from Gymnasium.
 
-Comparison: Actor-Critic vs Deep Q-Learning
+The Actor-Critic algorithm loosely follows Ref. [1]
+The Deep Q-Learning implementation follows Ref. [2]
+The Double Deep Q-Learning implementation follows Ref. [3]
+📈 Comparison: Actor-Critic vs Deep Q-Learning
 
-With the script batch_train_and_run.sh we first train 500 agents and then run 1000 episodes for each agent using:
+Using the script:
 
-the actor-critic algorithm
-the deep q-learning (DQN) algorithm
+batch_train_and_run.sh
 
-Here is a plot showing the distribution of the episodes needed for training for each scenario, along with the mean.
+we train 500 agents and run 1000 evaluation episodes for each agent using:
 
-We observe that the distribution of episodes needed for training is more spread out for the actor-critic method. Furthermore, the actor-critic algorithm on average needed 28% more episodes to complete the training as compared to the DQN algorithm.
+Actor-Critic algorithm
+Deep Q-Learning (DQN)
+Training Episodes Distribution
 
-Here is a plot showing the actual runtime distribution of the respective 500 trainings.
+A plot shows the distribution of the number of episodes needed for training.
 
-On average, the actor-critic algorithm takes 67% longer to train compared to deep Q-learning. This is because the actor-critic algorithm trains two neural networks (actor and critic), while DQN trains only one network.
+Observation
 
-When evaluating trained agents across 1000 episodes, the distributions of returns are similar. However:
+Actor-Critic distribution is more spread out
+Actor-Critic required 28% more episodes on average to complete training compared to DQN
+Training Runtime Distribution
 
-Mean return of DQN agents: 227.4
-Mean return of actor-critic agents: 211.6
+Another plot shows training runtime for 500 agents.
 
-The best actor-critic agent slightly outperformed the best DQN agent.
+Observation
+
+Actor-Critic takes 67% longer to train
+Reason: Actor-Critic trains two neural networks
+Algorithm	Neural Networks
+DQN	1 Network
+Actor-Critic	2 Networks (Actor + Critic)
+Return Distribution (1000 Episodes)
+
+Both algorithms produce similar return distributions.
+
+Algorithm	Mean Return
+DQN	227.4
+Actor-Critic	211.6
+
+However, the best Actor-Critic agent slightly outperformed the best DQN agent.
+
+📂 Files and Usage
+File	Description
+agent_class.py	Implements the agent class used for training and acting
+train_and_visualize_agent.ipynb	Trains an agent and generates gameplay videos
+train_agent.py	Trains an agent and saves parameters + training statistics
+run_agent.py	Runs evaluation episodes using a trained agent
+trained_agents/batch_train_and_run.sh	Trains 500 agents and runs evaluation episodes
+trained_agents/plot_results.ipynb	Analyzes training statistics and performance
+📊 Key Findings
+Training Efficiency
+DQN required fewer episodes for training
+DQN required less training time
+Performance
+Metric	DQN	Actor-Critic
+Mean Return	Higher	Slightly Lower
+Training Speed	Faster	Slower
+Best Agent	Slightly Lower	Slightly Higher
+Summary
+DQN trains faster and provides better average performance
+Actor-Critic occasionally produces the best individual agents
+
+A larger study with more agents and optimized hyperparameters could provide deeper insights.
+
+📚 References
+
+[1] Sutton, R. S., & Barto, A. G.
+Reinforcement Learning: An Introduction
+http://incompleteideas.net/book/the-book.html
+
+[2] Mnih, V., Kavukcuoglu, K., Silver, D., et al.
+Playing Atari with Deep Reinforcement Learning
+https://arxiv.org/abs/1312.5602
+
+[3] van Hasselt, H., Guez, A., Silver, D.
+Deep Reinforcement Learning with Double Q-Learning
+https://arxiv.org/abs/1509.06461
