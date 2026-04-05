@@ -27,11 +27,12 @@ Sample mini-batches from memory to train the neural network
 To stabilize training, a target network is periodically updated from the main policy network.
 
 Project Structure
+
 project/
-│
-├── dqn_lunarlander.py     # Main training and evaluation script
-├── lunar_dqn_model.pth    # Saved trained model
-├── README.md              # Project documentation
+dqn_lunarlander.py – Main training and evaluation script
+lunar_dqn_model.pth – Saved trained model
+README.md – Project documentation
+
 Requirements
 
 Install the required libraries before running the project.
@@ -40,14 +41,16 @@ pip install gymnasium
 pip install torch
 pip install numpy
 pip install matplotlib
+
 How to Run
 
-Clone the repository:
+Clone the repository.
 
 git clone https://github.com/yourusername/lunar-lander-dqn
+
 cd lunar-lander-dqn
 
-Run the training script:
+Run the training script.
 
 python dqn_lunarlander.py
 
@@ -80,16 +83,11 @@ Example output:
 Eval episode reward: 230.5
 Eval episode reward: 215.8
 Average reward: 224.3
+
 Demo
 
 The trained agent can be visualized in the environment using render mode.
 This demonstrates how the learned policy controls the spacecraft to land successfully.
-
-Method Reference
-
-We use the lunar lander implementation from gymnasium. For the implementation of the actor-critic algorithm we loosely follow Ref. [1]. While for the implementation of deep Q-learning we follow Ref. [2], for the implementation of double deep Q-learning we follow Ref. [3].
-
-In the following, we first list the files contained in this repository and explain their usage. We then compare the training speed and post-training performance of agents trained using the actor-critic algorithm and deep Q-learning.
 
 ## Files and usage
 
