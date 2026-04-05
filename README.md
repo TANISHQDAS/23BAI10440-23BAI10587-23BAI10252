@@ -4,8 +4,7 @@ This project implements a Deep Q-Network (DQN) using PyTorch to train an agent t
 
 The goal of the agent is to control a spacecraft and land it safely between two landing flags. The agent learns optimal behavior by interacting with the environment and improving its policy using reinforcement learning.
 
-The implementation includes:
-
+Features
 Deep Q-Network with multiple fully connected layers
 Experience Replay Buffer
 Target Network for stable learning
@@ -27,12 +26,10 @@ Sample mini-batches from memory to train the neural network
 To stabilize training, a target network is periodically updated from the main policy network.
 
 Project Structure
-
-project/
-dqn_lunarlander.py – Main training and evaluation script
-lunar_dqn_model.pth – Saved trained model
-README.md – Project documentation
-
+File	Description
+dqn_lunarlander.py	Main training and evaluation script
+lunar_dqn_model.pth	Saved trained model
+README.md	Project documentation
 Requirements
 
 Install the required libraries before running the project.
@@ -41,16 +38,14 @@ pip install gymnasium
 pip install torch
 pip install numpy
 pip install matplotlib
-
 How to Run
 
-Clone the repository.
+Clone the repository:
 
 git clone https://github.com/yourusername/lunar-lander-dqn
-
 cd lunar-lander-dqn
 
-Run the training script.
+Run the training script:
 
 python dqn_lunarlander.py
 
@@ -83,7 +78,6 @@ Example output:
 Eval episode reward: 230.5
 Eval episode reward: 215.8
 Average reward: 224.3
-
 Demo
 
 The trained agent can be visualized in the environment using render mode.
