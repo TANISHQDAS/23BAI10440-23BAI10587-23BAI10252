@@ -1,4 +1,4 @@
-eep Q-Network for Lunar Lander
+Deep Q-Network for Lunar Lander
 
 This project implements a Deep Q-Network (DQN) using PyTorch to train an agent to solve the LunarLander-v3 environment from Gymnasium.
 
